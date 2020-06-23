@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "325620626804",
+    "firebase_url": "https://glug-mvit-fd262.firebaseio.com",
+    "project_id": "glug-mvit-fd262",
+    "storage_bucket": "glug-mvit-fd262.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325620626804:android:f9ec0932cf1ede95fe6821",
+        "android_client_info": {
+          "package_name": "com.example.glugapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "325620626804-2a10d4c9avi9e9f9kdn0qgcrte2tm1hk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.glugapp",
+            "certificate_hash": "0d8f3315d355f75e680e10b34c79117979021296"
+          }
+        },
+        {
+          "client_id": "325620626804-2v6urlqhgbnali0ujtbqvc0pmvttsmhc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt8CMzZC01pwlIHYUnA1uqeCmSR-uCQwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "325620626804-2v6urlqhgbnali0ujtbqvc0pmvttsmhc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

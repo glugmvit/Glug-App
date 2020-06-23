@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glugapp/screens/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
   runApp(MyApp());
