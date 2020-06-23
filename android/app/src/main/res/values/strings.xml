@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Glug-App</string>
+    <string name="label">Udinic</string>
+    <string name="action_settings">Settings</string>
+    <string name="signup_title">Create new account</string>
+    <string name="login_label">Log in</string>
+</resources>
