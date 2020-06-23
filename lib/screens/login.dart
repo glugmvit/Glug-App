@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:glugapp/screens/google_sign_in.dart';
+import 'UserScreen.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -87,7 +89,16 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 onPressed: () {
-
+                    signInWithGoogle().whenComplete(() {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context){
+                            return UserScreen();
+                          }
+                        )
+                      );
+                     }
+                    );
                 },
               ),
             ),
