@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1008400130436",
+    "firebase_url": "https://glug-app-680be.firebaseio.com",
+    "project_id": "glug-app-680be",
+    "storage_bucket": "glug-app-680be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008400130436:android:64196bd892c047ce243dd1",
+        "android_client_info": {
+          "package_name": "com.example.glugapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008400130436-qdj1ci1ve02i835aq65s22v3fob96eoi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.glugapp",
+            "certificate_hash": "bf34e98df3553a4fb82b8bb218b90afc45447736"
+          }
+        },
+        {
+          "client_id": "1008400130436-0v2aasc45jj8ahtsmvfuejqcnq2gmodq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6W9T6TTUiioYuQbV6RzTjFfa_d5vx1Kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008400130436-0v2aasc45jj8ahtsmvfuejqcnq2gmodq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

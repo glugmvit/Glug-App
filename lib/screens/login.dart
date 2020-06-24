@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:glugapp/screens/email_signin.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -199,6 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
              ),
                 onPressed: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>SignIn()));
 
                 },
             ),
