@@ -8,14 +8,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1008400130436:android:ddd271ac00fe9fae243dd1",
+        "mobilesdk_app_id": "1:1008400130436:android:64196bd892c047ce243dd1",
         "android_client_info": {
           "package_name": "com.example.glugapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1008400130436-mo0924kgmlq65j5mmu3gajirbpqmnji5.apps.googleusercontent.com",
+          "client_id": "1008400130436-qdj1ci1ve02i835aq65s22v3fob96eoi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.glugapp",

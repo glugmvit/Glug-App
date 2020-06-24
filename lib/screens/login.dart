@@ -3,8 +3,8 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:glugapp/screens/google_sign_in.dart';
 import 'UserScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
+import 'UserScreen.dart';
 import 'custom_webview.dart';
 
 
@@ -38,6 +38,18 @@ class _LoginPageState extends State<LoginPage> {
             await _auth.signInWithCredential(facebookAuthCred);
       } catch (e) {}
     }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    FirebaseAuth.instance.currentUser().then((value) {
+      if(value != null) {
+        print("hrllo");
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>UserScreen()));
+      }
+    });
   }
 
   @override
@@ -116,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () {
                     signInWithGoogle().whenComplete(() {
-                      print("Success");
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>UserScreen()));
                     }
                   );
                 },
