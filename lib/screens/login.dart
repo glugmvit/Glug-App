@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:glugapp/screens/email_signin.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:glugapp/screens/google_sign_in.dart';
+import 'UserScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'UserScreen.dart';
+import 'custom_webview.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -12,6 +19,40 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
+  bool isLoggedIn = false;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  String your_client_id = "<YOUR-APP-ID>";
+  String your_redirect_url = "<YOUR-REDIRECT-URL>";
+  loginWithFacebook() async{
+    String result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => CustomWebView(
+                selectedUrl:'https://www.facebook.com/dialog/oauth?client_id=$your_client_id&redirect_uri=$your_redirect_url&response_type=token&scope=email,public_profile,',
+          ),
+          maintainState: true),);
+    if (result != null) {
+      try {
+        final facebookAuthCred =
+            FacebookAuthProvider.getCredential(accessToken: result);
+        final user =
+            await _auth.signInWithCredential(facebookAuthCred);
+      } catch (e) {}
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    FirebaseAuth.instance.currentUser().then((value) {
+      if(value != null) {
+        print("hrllo");
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>UserScreen()));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +129,10 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 onPressed: () {
-
+                    signInWithGoogle().whenComplete(() {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>UserScreen()));
+                    }
+                  );
                 },
               ),
             ),
@@ -126,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 onPressed: () {
-
+                  initiateFacebookLogin();
                 },
               ),
             ),
@@ -236,5 +280,29 @@ class _LoginPageState extends State<LoginPage> {
         ],
       )
     );
+  }
+  void initiateFacebookLogin() async {
+    var facebookLogin = FacebookLogin();
+    var facebookLoginResult =
+    await facebookLogin.logInWithReadPermissions(['email']);
+    switch (facebookLoginResult.status) {
+      case FacebookLoginStatus.error:
+        print("Error");
+        onLoginStatusChanged(false);
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        print("CancelledByUser");
+        onLoginStatusChanged(false);
+        break;
+      case FacebookLoginStatus.loggedIn:
+        print("LoggedIn");
+        onLoginStatusChanged(true);
+        break;
+    }
+  }
+  void onLoginStatusChanged(bool isLoggedIn) {
+    setState(() {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 }
