@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:local_auth/local_auth.dart';
@@ -26,6 +27,8 @@ class _SignInState extends State<SignIn> {
 
   bool _loading = false;
   String error;
+  TextEditingController emailcontroller=TextEditingController();
+  TextEditingController passwordcontroller=TextEditingController();
 
   Future<void> checkBiometrics() async{
     bool canCheckBiometric = false;
@@ -79,7 +82,14 @@ class _SignInState extends State<SignIn> {
       }
     });
   }
-
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  Future<String> signUp(String email, String password) async {
+    AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    FirebaseUser user = result.user;
+    return user.uid;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,6 +164,7 @@ class _SignInState extends State<SignIn> {
                           child: Column(
                             children: <Widget>[
                               TextFormField(
+                                controller: emailcontroller,
                                 validator: (val) => val.isEmpty ? "Enter Valid Email":null,
                                 decoration: InputDecoration(
                                   enabledBorder: UnderlineInputBorder(
@@ -170,6 +181,7 @@ class _SignInState extends State<SignIn> {
                               ),
                               SizedBox(height: 16,),
                               TextFormField(
+                                controller: passwordcontroller,
                                 obscureText: true,
                                 validator: (val) => val.isEmpty ? "Enter Password":null,
                                 decoration: InputDecoration(
