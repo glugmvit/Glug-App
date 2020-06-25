@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:glugapp/screens/UserScreen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +30,8 @@ class _SignInState extends State<SignIn> {
   String error;
   TextEditingController emailcontroller=TextEditingController();
   TextEditingController passwordcontroller=TextEditingController();
+
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> checkBiometrics() async{
     bool canCheckBiometric = false;
@@ -84,15 +87,29 @@ class _SignInState extends State<SignIn> {
   }
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   Future<String> signUp(String email, String password) async {
-    AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
+    _showSnackBar(context);
+    AuthResult result;
+    try {
+      result = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
-    FirebaseUser user = result.user;
-    return user.uid;
+    } catch (error) {
+      print(error);
+      result = null;
+    }
+    if (result != null) {
+      FirebaseUser user = result.user;
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> UserScreen()));
+    }
+    else {
+      print("error");
+      _scaffoldKey.currentState.hideCurrentSnackBar();
+    }
   }
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
         body: _loading ? Container(
           alignment: Alignment.center,
           child: CircularProgressIndicator(),
@@ -200,7 +217,11 @@ class _SignInState extends State<SignIn> {
                               SizedBox(height: 30,),
                               GestureDetector(
                                 onTap: () async{
-
+                                  setState(() {
+                                    
+                                    print("${emailcontroller.text} ${passwordcontroller.text}");
+                                    signUp(emailcontroller.text, passwordcontroller.text);
+                                  });
                                 },
                                 child: Container(
                                   alignment: Alignment.center,
@@ -238,6 +259,23 @@ class _SignInState extends State<SignIn> {
           ),
         )
     );
+  }
+
+  _showSnackBar(BuildContext context) {
+    var snackBar = SnackBar(
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "Signing into GLUG"
+          ),
+
+          CircularProgressIndicator()
+        ],
+      )
+    );
+
+    _scaffoldKey.currentState.showSnackBar(snackBar);
   }
 }
 
