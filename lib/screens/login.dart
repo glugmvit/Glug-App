@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:glugapp/screens/email_signin.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:glugapp/screens/google_sign_in.dart';
 import 'UserScreen.dart';
@@ -242,6 +244,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
              ),
                 onPressed: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>SignIn()));
 
                 },
             ),

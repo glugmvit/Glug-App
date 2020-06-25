@@ -23,6 +23,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_fonts: ^0.3.5
+  provider: ^4.0.2
+  firebase_auth: ^0.15.4
+  local_auth: ^0.6.1
   flutter_facebook_login: ^2.0.0
   google_sign_in: ^4.5.1
   flutter_webview_plugin: ^0.3.11
@@ -54,6 +58,9 @@ flutter:
     - assets/images/fb.png
     - assets/images/google.png
     - assets/images/github.png
+    - assets/images/background.jpg
+    - assets/images/fingerprint.png
+    - assets/images/logo.png
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
