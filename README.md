@@ -1,12 +1,11 @@
 # Glug-App
 An App for GLUG MVIT !! 
-An App for GLUG MVIT !! 
 
 Stay connected anywhere, anytime with GLUG MVIT.
 
 **FEATURES**
 * Compose a post that you can save to draft or immediately publish.
-* Veiw existing posts.
+* View existing posts.
 * View list of published posts.
 * Switch account/blog if you have more than one.
 
