@@ -18,13 +18,6 @@ class _SignInState extends State<SignIn> {
 
 
   final _formKey = GlobalKey<FormState>();
-  String email = "", password = "";
-
-  /// For Fingerprint & FaceId Local Auth
-  final LocalAuthentication _localAuthentication = LocalAuthentication();
-  String _authorizedOrNot = "Not Authorized";
-  List<BiometricType> _availableBiometricTypes = List<BiometricType>();
-  bool _canCheckBiometric = false;
 
   bool _loading = false;
   String error;
@@ -33,58 +26,6 @@ class _SignInState extends State<SignIn> {
 
   var _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Future<void> checkBiometrics() async{
-    bool canCheckBiometric = false;
-    try {
-      canCheckBiometric = await _localAuthentication.canCheckBiometrics;
-    } on PlatformException catch (e) {
-      print(e);
-    }
-
-    if (!mounted) return;
-
-    setState(() {
-      _canCheckBiometric = canCheckBiometric;
-    });
-  }
-
-  Future<void> _getListOfBiometricTypes() async {
-    List<BiometricType> listofBiometrics;
-    try {
-      listofBiometrics = await _localAuthentication.getAvailableBiometrics();
-    } on PlatformException catch (e) {
-      print(e);
-    }
-
-    if (!mounted) return;
-
-    setState(() {
-      _availableBiometricTypes = listofBiometrics;
-    });
-  }
-
-  Future<void> _authorizeNow() async {
-    bool isAuthorized = false;
-    try {
-      isAuthorized = await _localAuthentication.authenticateWithBiometrics(
-        localizedReason: "Please authenticate to complete your transaction",
-        useErrorDialogs: true,
-        stickyAuth: true,
-      );
-    } on PlatformException catch (e) {
-      print(e);
-    }
-
-    if (!mounted) return;
-
-    setState(() {
-      if (isAuthorized) {
-        _authorizedOrNot = "Authorized";
-      } else {
-        _authorizedOrNot = "Not Authorized";
-      }
-    });
-  }
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   Future<String> signUp(String email, String password) async {
     _showSnackBar(context);
@@ -192,9 +133,6 @@ class _SignInState extends State<SignIn> {
                                     fontSize: 15
                                 ),
                                 ),
-                                onSaved: (val){
-                                  email = val;
-                                },
                               ),
                               SizedBox(height: 16,),
                               TextFormField(
@@ -210,9 +148,6 @@ class _SignInState extends State<SignIn> {
                                     fontSize: 15
                                 ),
                                 ),
-                                onSaved: (val){
-                                  password = val;
-                                },
                               ),
                               SizedBox(height: 30,),
                               GestureDetector(
@@ -277,31 +212,4 @@ class _SignInState extends State<SignIn> {
 
     _scaffoldKey.currentState.showSnackBar(snackBar);
   }
-}
-
-Future<void> cantCheckBiometricsDialog(BuildContext context) async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('No Biometrics Found'),
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              Text('Can not login with Biometrics'),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('Ok'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
 }
