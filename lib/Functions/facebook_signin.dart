@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import 'package:glugapp/Constants/api_keys.dart';
+//import 'package:glugapp/Constants/api_keys.dart';
 import 'package:glugapp/Functions/custom_webview.dart';
 
 bool isLoggedIn = false;
@@ -37,7 +37,7 @@ loginWithFacebook(BuildContext context) async{
       context,
       MaterialPageRoute(
           builder: (context) => CustomWebView(
-                selectedUrl:'https://www.facebook.com/dialog/oauth?client_id=$your_client_id&redirect_uri=$your_redirect_url&response_type=token&scope=email,public_profile,',
+                //selectedUrl:'https://www.facebook.com/dialog/oauth?client_id=$your_client_id&redirect_uri=$your_redirect_url&response_type=token&scope=email,public_profile,',
           ),
           maintainState: true),);
     if (result != null) {

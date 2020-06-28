@@ -63,10 +63,8 @@ class _SignInState extends State<SignIn> {
                 Container(
                   width: double.infinity,
                   height: double.infinity,
-                  child: null,
-                  decoration: BoxDecoration(
-                    color: Colors.blueGrey
-                  ),
+                  child:Image.asset("assets/images/backgroundlogo.jpg",fit: BoxFit.fill,),
+
                 ),
                 Container(
                   child: Column(
