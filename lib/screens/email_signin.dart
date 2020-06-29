@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:glugapp/screens/UserScreen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:flutter/services.dart';
 
@@ -120,8 +121,11 @@ class _SignInState extends State<SignIn> {
                           child: Column(
                             children: <Widget>[
                               TextFormField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                                 controller: emailcontroller,
-                                validator: (val) => val.isEmpty ? "Enter Valid Email":null,
+                                validator: (val) => !EmailValidator.validate(val)? "Enter Valid Email" : null,
                                 decoration: InputDecoration(
                                   enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(color: Colors.white)
@@ -134,6 +138,9 @@ class _SignInState extends State<SignIn> {
                               ),
                               SizedBox(height: 16,),
                               TextFormField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                                 controller: passwordcontroller,
                                 obscureText: true,
                                 validator: (val) => val.isEmpty ? "Enter Password":null,
@@ -151,10 +158,10 @@ class _SignInState extends State<SignIn> {
                               GestureDetector(
                                 onTap: () async{
                                   setState(() {
-                                    
-                                    print("${emailcontroller.text} ${passwordcontroller.text}");
-                                    signUp(emailcontroller.text, passwordcontroller.text);
-                                  });
+                                    if (_formKey.currentState.validate()) {
+                                      print("${emailcontroller.text} ${passwordcontroller.text}");
+                                      signUp(emailcontroller.text, passwordcontroller.text);
+                                    }});
                                 },
                                 child: Container(
                                   alignment: Alignment.center,

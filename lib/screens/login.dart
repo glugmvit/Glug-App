@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glugapp/Functions/facebook_signin.dart';
 import 'package:glugapp/Widgets/social_button.dart';
-import 'package:glugapp/Screens/email_signin.dart';
+import 'package:glugapp/screens/email_signin.dart';
 import 'package:glugapp/Functions/google_sign_in.dart';
 import 'UserScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,7 +9,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
-
   @override
   _LoginPageState createState() => _LoginPageState();
 }
