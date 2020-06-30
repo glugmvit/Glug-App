@@ -3,6 +3,10 @@ An App for GLUG MVIT !!
 
 Stay connected anywhere, anytime with GLUG MVIT.
 
+## The app so far
+
+
+
 **FEATURES**
 * Compose a post that you can save to draft or immediately publish.
 * View existing posts.
