@@ -5,7 +5,13 @@ Stay connected anywhere, anytime with GLUG MVIT.
 
 ## The app so far
 
-
+<table>
+  <tr>
+    <td><img alt="Splash Screen" src="screenshots/splash.png"  height="600px"></td>
+    <td><img alt="Login page" src="screenshots/login.png"  height="600px"></td>
+    <td><img alt="Email login" src="screenshots/email.png"  height="600px"></td>
+  </tr>
+</table>
 
 **FEATURES**
 * Compose a post that you can save to draft or immediately publish.
