@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glugapp/screens/login.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
   runApp(MyApp());
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline,
+              style: Theme.of(context).textTheme.headline5,
             ),
           ],
         ),
