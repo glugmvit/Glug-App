@@ -4,26 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:glugapp/screens/UserScreen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:local_auth/local_auth.dart';
 import 'package:flutter/services.dart';
+//import 'package:local_auth/local_auth.dart';
+//import 'package:flutter/services.dart';
 
 class SignIn extends StatefulWidget {
-
   final Function toogleView;
   SignIn({this.toogleView});
 
   @override
   _SignInState createState() => _SignInState();
 }
+
 class _SignInState extends State<SignIn> {
-
-
   final _formKey = GlobalKey<FormState>();
 
   bool _loading = false;
   String error;
-  TextEditingController emailcontroller=TextEditingController();
-  TextEditingController passwordcontroller=TextEditingController();
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
 
   var _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -33,187 +32,236 @@ class _SignInState extends State<SignIn> {
     AuthResult result;
     try {
       result = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
+          email: email, password: password);
     } catch (error) {
       print(error);
       result = null;
     }
     if (result != null) {
       FirebaseUser user = result.user;
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> UserScreen()));
-    }
-    else {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => UserScreen()));
+    } else {
       print("error");
       _scaffoldKey.currentState.hideCurrentSnackBar();
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
     return Scaffold(
-      key: _scaffoldKey,
-        body: _loading ? Container(
-          alignment: Alignment.center,
-          child: CircularProgressIndicator(),
-        ) : SingleChildScrollView(
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child:Image.asset("assets/images/backgroundlogo.jpg",fit: BoxFit.fill,),
-
-                ),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+        key: _scaffoldKey,
+        body: _loading
+            ? Container(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator(),
+              )
+            : SingleChildScrollView(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: Stack(
                     children: <Widget>[
-                      Center(child: Image.asset("assets/images/logo.png",height: 30,
-                        width: 30,alignment: Alignment.center,)),
-                      SizedBox(height: 13,),
-                      Text("GLUG APP", style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                              fontSize: 27,color: Colors.white,
-                              letterSpacing: 1
-                          )
-                      ),),
-                      SizedBox(height: 30,),
                       Container(
-                        width: 180,
-                        child: Text("Sir M. Visvesveraya Institute Of Technology", textAlign: TextAlign.center,style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                              color: Colors.white54,
-                              letterSpacing: 0.6,
-                              fontSize: 11
-                          ),
-                        ),),
-                      ),
-                      SizedBox(height: 40,),
-                      Text("Sign In", textAlign: TextAlign.center,style: GoogleFonts.roboto(
-                        textStyle: TextStyle(
-                          color: Colors.white,
-                          letterSpacing: 1,
-                          fontSize: 23,
+                        width: double.infinity,
+                        height: double.infinity,
+                        child: Image.asset(
+                          "assets/images/backgroundlogo.jpg",
+                          fit: BoxFit.fill,
                         ),
-                      ),),
-                      SizedBox(height: 8,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text("Almost Done!! 😋", textAlign: TextAlign.center,style: GoogleFonts.roboto(
-                            textStyle: TextStyle(
-                              color: Colors.white70,
-                              letterSpacing: 1,
-                              fontSize: 17,
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Center(
+                                child: Image.asset(
+                              "assets/images/logo.png",
+                              height: 30,
+                              width: 30,
+                              alignment: Alignment.center,
+                            )),
+                            SizedBox(
+                              height: 13,
                             ),
-                          ),),
-                        ],
-                      ),
-                      SizedBox(height: 30,),
-                      Form(
-                        key: _formKey,
-                        child: Container(
-                          margin: EdgeInsets.symmetric(vertical: 10,horizontal: 45),
-                          child: Column(
-                            children: <Widget>[
-                              TextFormField(
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                                controller: emailcontroller,
-                                validator: (val) => !EmailValidator.validate(val)? "Enter Valid Email" : null,
-                                decoration: InputDecoration(
-                                  enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.white)
-                                  ),
-                                  hintText: "Email",hintStyle: TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 15
-                                ),
+                            Text(
+                              "GLUG APP",
+                              style: GoogleFonts.roboto(
+                                  textStyle: TextStyle(
+                                      fontSize: 27,
+                                      color: Colors.white,
+                                      letterSpacing: 1)),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Container(
+                              width: 180,
+                              child: Text(
+                                "Sir M. Visvesveraya Institute Of Technology",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.roboto(
+                                  textStyle: TextStyle(
+                                      color: Colors.white54,
+                                      letterSpacing: 0.6,
+                                      fontSize: 11),
                                 ),
                               ),
-                              SizedBox(height: 16,),
-                              TextFormField(
-                                style: TextStyle(
+                            ),
+                            SizedBox(
+                              height: 40,
+                            ),
+                            Text(
+                              "Sign In",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.roboto(
+                                textStyle: TextStyle(
                                   color: Colors.white,
-                                ),
-                                controller: passwordcontroller,
-                                obscureText: true,
-                                validator: (val) => val.isEmpty ? "Enter Password":null,
-                                decoration: InputDecoration(
-                                  enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.white)
-                                  ),
-                                  hintText: "Password",hintStyle: TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 15
-                                ),
+                                  letterSpacing: 1,
+                                  fontSize: 23,
                                 ),
                               ),
-                              SizedBox(height: 30,),
-                              GestureDetector(
-                                onTap: () async{
-                                  setState(() {
-                                    if (_formKey.currentState.validate()) {
-                                      print("${emailcontroller.text} ${passwordcontroller.text}");
-                                      signUp(emailcontroller.text, passwordcontroller.text);
-                                    }});
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  width: double.infinity,
-                                  padding: EdgeInsets.symmetric(vertical: 10,horizontal: 0),
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(50),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  "Almost Done!! 😋",
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.roboto(
+                                    textStyle: TextStyle(
+                                      color: Colors.white70,
+                                      letterSpacing: 1,
+                                      fontSize: 17,
+                                    ),
                                   ),
-                                  child: Text("SUBMIT",textAlign: TextAlign.center,style: GoogleFonts.roboto(
-                                      textStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          letterSpacing: 1
-                                      )
-                                  ),),
                                 ),
-                              )
-                            ],
-                          ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Form(
+                              key: _formKey,
+                              child: Container(
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 45),
+                                child: Column(
+                                  children: <Widget>[
+                                    TextFormField(
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                      controller: emailcontroller,
+                                      validator: (val) =>
+                                          !EmailValidator.validate(val)
+                                              ? "Enter Valid Email"
+                                              : null,
+                                      decoration: InputDecoration(
+                                        enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.white)),
+                                        hintText: "Email",
+                                        hintStyle: TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 15),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 16,
+                                    ),
+                                    TextFormField(
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                      controller: passwordcontroller,
+                                      obscureText: true,
+                                      validator: (val) =>
+                                          val.isEmpty ? "Enter Password" : null,
+                                      decoration: InputDecoration(
+                                        enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.white)),
+                                        hintText: "Password",
+                                        hintStyle: TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 15),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        setState(() {
+                                          if (_formKey.currentState
+                                              .validate()) {
+                                            print(
+                                                "${emailcontroller.text} ${passwordcontroller.text}");
+                                            signUp(emailcontroller.text,
+                                                passwordcontroller.text);
+                                          }
+                                        });
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: double.infinity,
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 0),
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.white),
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                        ),
+                                        child: Text(
+                                          "SUBMIT",
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.roboto(
+                                              textStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  letterSpacing: 1)),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(height: 20,),
-
-                      SizedBox(height: 20,),
-
-                      SizedBox(height: 30,),
-
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        )
-    );
+              ));
   }
 
   _showSnackBar(BuildContext context) {
     var snackBar = SnackBar(
-      content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Signing into GLUG"
-          ),
-
-          CircularProgressIndicator()
-        ],
-      )
-    );
+        content: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [Text("Signing into GLUG"), CircularProgressIndicator()],
+    ));
 
     _scaffoldKey.currentState.showSnackBar(snackBar);
   }
