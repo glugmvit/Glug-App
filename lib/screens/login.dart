@@ -33,9 +33,16 @@ class _LoginPageState extends State<LoginPage> {
     var screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: ListView(
-        children: [
+      backgroundColor: Colors.blueAccent,
+      body: Center(
+        child: Container(
+        decoration: BoxDecoration(
+        gradient: LinearGradient(
+        begin: Alignment.topRight,
+        end: Alignment.bottomLeft,
+        colors: [Colors.blue, Colors.yellow])),
+         child: ListView(
+          children: [
           Image(
             image: AssetImage("assets/images/glug_logo.png"),
             height: screenHeight*0.2,
@@ -45,8 +52,9 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.only(top:10,left: 20,right: 20),
             child: Center(
               child: Text(
-                "In real open source, you have the right to control your own destiny.",
+                "Don't worry if it doesn't work right. If everything did, you'd be out of a job.",
                 style: TextStyle(
+                  color:Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),
@@ -59,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.only(top:10,left: 20,right: 20,bottom: screenHeight*0.1),
             child: Center(
               child: Text(
-                "- LINUS TORVALDS",
+                " ",
                 style: TextStyle(
                   color: Colors.blue[700],
                   fontSize: 15,
@@ -100,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
             function: () {
               initiateFacebookLogin();
               setState(() {
-                
+
               });
             },
             text: Text(
@@ -120,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 30,
             ),
             function: () {
-              
+
             },
             text: Text(
               "Sign Up with GitHub",
@@ -151,6 +159,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ],
+      ),
+        ),
       )
     );
   }

@@ -7,7 +7,7 @@
     <item>
          <bitmap
 
-             android:src="@mipmap/bulbul"
+             android:src="@mipmap/blue"
              android:layout_width="match_parent"
              android:layout_height="match_parent" />
     </item>

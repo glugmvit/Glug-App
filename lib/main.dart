@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
 
   startTime() async {
-    var _duration = new Duration(seconds: 5);
+    var _duration = new Duration(seconds: 3);
     return new Timer(_duration, navigationPage);
   }
 
@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
             width:MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            child: Image.asset("assets/images/bulbul.png",fit: BoxFit.fill,),
+            child: Image.asset("assets/images/blue.png",fit: BoxFit.fill,),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -74,7 +74,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       CircleAvatar(
-                        backgroundColor: Colors.orangeAccent,
+                        backgroundColor: Colors.white,
                         radius: 70.0,
                         child: Container(child: Image.asset("assets/images/logo.png"),
                          height:130 ,
