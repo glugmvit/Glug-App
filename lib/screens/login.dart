@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
         gradient: LinearGradient(
         begin: Alignment.topRight,
         end: Alignment.bottomLeft,
-        colors: [Colors.deepPurpleAccent, Colors.greenAccent])),
+        colors: [Colors.blue, Colors.yellow])),
          child: ListView(
           children: [
           Image(
