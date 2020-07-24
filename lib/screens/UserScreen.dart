@@ -1,13 +1,9 @@
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:glugapp/user.dart';
 import '../Functions/google_sign_in.dart';
 
 // class UserScreen extends StatelessWidget {
-  
-
-
 
 class UserScreen extends StatefulWidget {
   UserScreen({Key key}) : super(key: key);
@@ -20,27 +16,25 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Text(
-              "Welcome $name"
+        backgroundColor: Colors.white,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Text("Welcome $userName"),
             ),
-          ),
-
-          RaisedButton(
-            onPressed: () {
-              signOutGoogle();
-            },
-            child: Text("Sign Out"),
-          )
-        ],
-      )
-    );
+            RaisedButton(
+              onPressed: () async {
+                signOutGoogle();
+                await FirebaseAuth.instance.signOut();
+              },
+              child: Text("Sign Out"),
+            )
+          ],
+        ));
   }
-  void signOutGoogle() async{
+
+  void signOutGoogle() async {
     await FirebaseAuth.instance.signOut().then((value) {
       Navigator.pop(context);
     });
